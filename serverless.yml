@@ -1,0 +1,18 @@
+service: send-birthday-message
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  region: eu-west-2
+
+functions:
+  send:
+    handler: handler.send
+    events:
+      - http:
+          path: send
+          method: post
+          cors: true
+    environment:
+      TWILIO_ACCOUNT_SID: AC31ca11921adb49a71ab455fef993fa17
+      TWILIO_AUTH_TOKEN: ${opt:TWILIO_AUTH_TOKEN}
